@@ -45,7 +45,7 @@ $(function () {
     () => $('.room:has(.has-cup):not(:has(.has-glasses))'),
     () => $('.guest').filter(function(){ return $(this).siblings('.guest').filter((i,el)=>$(el).attr('data-time') < $(this).attr('data-time')).length === 0; }),
     () => card({name:'Miras',color:'blue',time:'21:20',aitu:true,things:['phone'],order:4}).hide().insertAfter($('.guest[data-name="Askar"]')).fadeIn(300),
-    () => $('.guest[data-name="Natasha"]').fadeOut(300,function(){ $(this).remove(); updateCounts(); }),
+    () => $('.guest[data-name="Natasha"]').animate({top:-10},160).animate({top:0},160).fadeOut(300,function(){ $(this).remove(); updateCounts(); }),
     () => $('.floor[data-floor="1"] .guest.has-crumbs:not(.has-cup)').filter(function(){ return $(this).attr('data-time') > '21:00' && $(this).attr('data-time') < '21:30'; }).filter(function(){ return $(this).prev('.aitu-student').add($(this).next('.aitu-student')).length > 0; })
   ];
   function updateCounts(){ $('.room').each(function(){ $(this).find('h2 small').text($(this).find('.guest').length+' guests'); }); }
